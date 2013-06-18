@@ -9,7 +9,7 @@
   <name>easyb-parent</name>
 
   <description>
-    This is the top-level parent project for easyb artefacts. It separates out the release of non-code artifacts from
+    This is the top-level parent project for easyb artifacts. It separates out the release of non-code artifacts from
     code artifacts.
 
     It configures distribution repositories and top level plugin defaults. Parent poms are not to include dependencies
