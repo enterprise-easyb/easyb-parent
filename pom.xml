@@ -3,7 +3,7 @@
 	<modelVersion>4.0.0</modelVersion>
 	<groupId>org.easyb</groupId>
 	<artifactId>easyb-parent</artifactId>
-	<version>1.1</version>
+	<version>1.2-SNAPSHOT</version>
 	<packaging>pom</packaging>
 	<name>easyb-parent</name>
 	<description>
@@ -37,7 +37,7 @@
 		<connection>scm:git:git@github.com:easyb/easyb-parent</connection>
 		<developerConnection>scm:git:git@github.com:easyb/easyb-parent</developerConnection>
 		<url>http://github.com/easyb/easyb-parent</url>
-	  <tag>easyb-parent-1.1</tag>
+	  <tag>HEAD</tag>
   </scm>
 	<properties>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
