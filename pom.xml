@@ -1,19 +1,19 @@
 <?xml version="1.0"?>
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
 	<modelVersion>4.0.0</modelVersion>
-	<groupId>org.easyb</groupId>
+	<groupId>io.easyb</groupId>
 	<artifactId>easyb-parent</artifactId>
-	<version>1.2-SNAPSHOT</version>
+	<version>2.0-SNAPSHOT</version>
 	<packaging>pom</packaging>
 	<name>easyb-parent</name>
 	<description>
-    This is the top-level parent project for easyb artifacts. It separates out the release of non-code artifacts from
+    This is the top-level parent project for Easyb artifacts. It separates out the release of non-code artifacts from
     code artifacts.
 
     It configures distribution repositories and top level plugin defaults. Parent poms are not to include dependencies
     of any kind.
   </description>
-	<url>http://www.easyb.org</url>
+	<url>http://www.easyb.io</url>
 	<developers>
 		<developer>
 			<id>ajglover</id>
@@ -25,6 +25,12 @@
 			<email>richard@bluetrainsoftware.com</email>
 			<url>http://www.bluetrainsoftware.com</url>
 		</developer>
+		<developer>
+			<id>tbergeron</id>
+			<name>Timothy Bergeron</name>
+			<email>enterpriseguru@easyb.io</email>
+			<url>http://www.easyb.io</url>
+		</developer>
 	</developers>
 	<licenses>
 		<license>
@@ -34,9 +40,9 @@
 	</licenses>
 	<scm>
 		<!-- this is the format documented in the 1.4 SCM plugin -->
-		<connection>scm:git:git@github.com:easyb/easyb-parent</connection>
-		<developerConnection>scm:git:git@github.com:easyb/easyb-parent</developerConnection>
-		<url>http://github.com/easyb/easyb-parent</url>
+		<connection>scm:git:git@github.com:enterpriseguru/easyb-parent</connection>
+		<developerConnection>scm:git:git@github.com:enterpriseguru/easyb-parent</developerConnection>
+		<url>http://github.com/enterpriseguru/easyb-parent</url>
 	  <tag>HEAD</tag>
   </scm>
 	<properties>
@@ -45,20 +51,23 @@
 	</properties>
 	<distributionManagement>
 		<repository>
-			<id>sonatype-staging</id>
-			<name>oss.sonatype.org Staging Repository</name>
+			<id>ossrh</id>
+			<name>OSSRH Nexus Repository</name>
 			<url>http://oss.sonatype.org/service/local/staging/deploy/maven2/</url>
 		</repository>
 		<snapshotRepository>
-			<id>sonatype-snapshots</id>
-			<name>oss.sonatype.org Snapshot Repository</name>
+			<id>ossrh</id>
+			<name>OSSRH Nexus Repository</name>
 			<url>https://oss.sonatype.org/content/repositories/snapshots/</url>
 		</snapshotRepository>
 	</distributionManagement>
 	<profiles>
 		<profile>
-			<!-- adtivate the sonatype profile when a release is being done -->
-			<id>sonaytpe</id>
+			<!--
+			    activate the ossrh profile when a release is being done because
+			    the Central Repository requires signed artifacts
+			-->
+			<id>ossrh</id>
 			<activation>
 				<property>
 					<name>performRelease</name>
@@ -70,7 +79,7 @@
 					<plugin>
 						<groupId>org.apache.maven.plugins</groupId>
 						<artifactId>maven-gpg-plugin</artifactId>
-						<version>1.1</version>
+						<version>1.6</version>
 						<executions>
 							<execution>
 								<id>sign-artifacts</id>
@@ -91,12 +100,12 @@
 				<plugin>
 					<groupId>org.apache.maven.plugins</groupId>
 					<artifactId>maven-scm-plugin</artifactId>
-					<version>1.9</version>
+					<version>1.9.5</version>
 				</plugin>
 				<plugin>
 					<groupId>org.apache.maven.plugins</groupId>
 					<artifactId>maven-enforcer-plugin</artifactId>
-					<version>1.2</version>
+					<version>1.4.1</version>
 					<!-- Invocation is defined by the release plugin goal set hence no executions -->
 					<configuration>
 						<rules>
@@ -104,7 +113,7 @@
 								<version>[3.2.2,)</version>
 							</requireMavenVersion>
 							<requireReleaseDeps>
-								<!--  Don't allow releases with snapshop deps or parents -->
+								<!--  Don't allow releases with snapshot dependencies or parents -->
 								<message>No Snapshots Allowed!</message>
 								<failWhenParentIsSnapshot>true</failWhenParentIsSnapshot>
 								<searchTransitive>true</searchTransitive>
@@ -121,7 +130,7 @@
 				</plugin>
 				<plugin>
 					<artifactId>maven-release-plugin</artifactId>
-					<version>2.5</version>
+					<version>2.5.3</version>
 					<configuration>
 						<mavenExecutorId>forked-path</mavenExecutorId>
 						<arguments>-Deasyb.release=release</arguments>
