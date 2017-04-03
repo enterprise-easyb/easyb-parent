@@ -40,9 +40,9 @@
 	</licenses>
 	<scm>
 		<!-- this is the format documented in the 1.4 SCM plugin -->
-		<connection>scm:git:git@github.com:enterpriseguru/easyb-parent</connection>
-		<developerConnection>scm:git:git@github.com:enterpriseguru/easyb-parent</developerConnection>
-		<url>http://github.com/enterpriseguru/easyb-parent</url>
+		<connection>scm:git:git@github.com:enterprise-easyb/easyb-parent</connection>
+		<developerConnection>scm:git:git@github.com:enterprise-easyb/easyb-parent</developerConnection>
+		<url>http://github.com/enterprise-easyb/easyb-parent</url>
 	  <tag>HEAD</tag>
   </scm>
 	<properties>
